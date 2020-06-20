@@ -1,0 +1,19 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "My first Fastify Api Nodejs",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon ./src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Benjamín Gautier <benja.gautier@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "boom": "^7.3.0",
+    "fastify": "^2.15.0",
+    "fastify-swagger": "^2.6.0",
+    "mongoose": "^5.9.19",
+    "nodemon": "^2.0.4"
+  }
+}
