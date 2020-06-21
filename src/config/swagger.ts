@@ -1,8 +1,7 @@
 export const Options = {
-	routePrefix: '/documentations',
+	routePrefix: '/documentation',
 	exposeRoute: true,
 	swagger: {
-		paths: '/users',
 		info: {
 			title: 'My first API',
 			description: 'Building a blazing fast REST API with Node.js, MongoDB, Fastify and Swagger',

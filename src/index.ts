@@ -6,11 +6,13 @@ import swagger from 'fastify-swagger';
 
 const app = fastify.default({
     logger: true
-})
+});
+
+app.register(swagger, Options);
 
 routes.forEach(route => {
     app.route(route);
-})
+});
 
 mongoose.connect('mongodb://localhost/myFirstApi', { useNewUrlParser: true,  useUnifiedTopology: true })
         .then(() => console.log('MongoDB connected...'))
@@ -18,7 +20,6 @@ mongoose.connect('mongodb://localhost/myFirstApi', { useNewUrlParser: true,  use
 
 
 // Register Swagger
-app.register(swagger, Options);
 
 const start = async (): Promise<void> => {
 	try {
