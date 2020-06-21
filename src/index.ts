@@ -6,6 +6,9 @@ import swagger from 'fastify-swagger';
 import { config } from './config';
 import helmet from 'fastify-helmet';
 import cors from 'fastify-cors';
+import jwt from 'fastify-jwt';
+import cookie from 'fastify-cookie';
+import secretAuth from './config/auth.config';
 
 const app = fastify.default({
     logger: true
@@ -14,6 +17,15 @@ const app = fastify.default({
 app.register(swagger, Options);
 app.register(helmet);
 app.register(cors);
+app.register(jwt, 
+	{
+		secret: secretAuth,
+		cookie: { 
+			cookieName: 'token'
+		}
+	});
+	
+app.register(cookie);
 
 routes.forEach(route => {
     app.route(route);

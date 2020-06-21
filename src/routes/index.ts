@@ -2,7 +2,7 @@ import { RouteOptions } from "fastify";
 import * as usersController from '../controllers/userController';
 import * as authController from '../controllers/authController';
 import { AddUserSchema } from "./documentation/usersApi";
-import { SignupSchema } from "./documentation/authApi";
+import { SignupSchema, LoginSchema } from "./documentation/authApi";
 
 const getUsersRoute: RouteOptions = {
   method: 'GET',
@@ -23,12 +23,19 @@ const postUserRoute: RouteOptions = {
   schema: AddUserSchema
 };
 
-const signinRoute: RouteOptions = {
+const signupRoute: RouteOptions = {
   method: 'POST',
   url: '/api/auth/signup',
   handler: authController.signup,
   schema: SignupSchema
 }
-const routes = [getUsersRoute,  getUserRoute, postUserRoute, signinRoute];
+
+const loginRoute: RouteOptions = {
+  method: 'POST',
+  url: '/api/auth/login',
+  handler: authController.login,
+  schema: LoginSchema
+}
+const routes = [getUsersRoute,  getUserRoute, postUserRoute, signupRoute, loginRoute];
 
 export default routes;

@@ -7,6 +7,7 @@ import boom from 'boom';
 //obtener todos los usuarios
 export const getUsers = async (req: FastifyRequest, reply: FastifyReply<ServerResponse>): Promise<Document[]> => {
 	try {
+		await req.jwtVerify()
 		const cars = await User.find();
 		return cars;
 	} catch (err) {

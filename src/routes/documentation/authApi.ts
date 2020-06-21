@@ -27,3 +27,24 @@ export const SignupSchema = {
 		},
 	},
 };
+export const LoginSchema = {
+	description: 'Login user',
+	tags: ['auth'],
+	summary: 'Login user given email and password',
+	body: {
+		type: 'object',
+		properties: {
+            email: { type: 'string' },
+            password: {type: 'string'}
+		},
+	},
+	response: {
+		200: {
+			description: 'Successful response',
+			type: 'object',
+			properties: {
+				token: { type: 'string' },
+			},
+		},
+	},
+};
