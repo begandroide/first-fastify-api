@@ -3,33 +3,33 @@ import mongoose from 'mongoose';
 import routes from './routes';
 import { Options } from './config/swagger';
 import swagger from 'fastify-swagger';
+import { config } from './config';
 
 const app = fastify.default({
     logger: true
 });
 
+// Register Swagger
 app.register(swagger, Options);
 
 routes.forEach(route => {
     app.route(route);
 });
 
-mongoose.connect('mongodb://localhost/myFirstApi', { useNewUrlParser: true,  useUnifiedTopology: true })
-        .then(() => console.log('MongoDB connected...'))
-        .catch(err => { console.log(err)});
-
-
-// Register Swagger
 
 const start = async (): Promise<void> => {
 	try {
-		await app.listen(3000);
+		await app.listen(config.app.port);
 		app.swagger();
 	} catch (err) {
 		app.log.error(err);
 		process.exit(1);
 	}
 };
-start();
 
 export default app;
+mongoose.connect(`mongodb://${config.db.host}:${config.db.port}/${config.db.name}`, { useNewUrlParser: true,  useUnifiedTopology: true })
+		.then(() => console.log('MongoDB connected...'))
+		.catch(err => { console.log(err)});
+
+start();
